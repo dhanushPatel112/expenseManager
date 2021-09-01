@@ -23,6 +23,7 @@ mongoose
         useUnifiedTopology: true,
     })
     .then(() => console.log("DB Connected"))
+    .catch((error) => {mongoose.connect(process.env.DATABASE, {useNewUrlParser: true,useUnifiedTopology:true})})
 
 mongoose.connection.on("error", (err) => {
     console.log(`DB connection error: ${err.message}`)
