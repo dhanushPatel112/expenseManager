@@ -80,7 +80,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
