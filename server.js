@@ -42,15 +42,11 @@ app.use("/api", categoryRoutes)
 app.use("/api", expenseRoutes)
 app.use("/api", incomeRoutes)
 
-// ... other app.use middleware 
-app.use(express.static(path.join(__dirname, "client", "build")))
-
-
 // set port, listen for requests
 const PORT = process.env.PORT || 8000
 
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"))
+    app.use(express.static(path.join(__dirname, "client", "build")))
 }
 
 // Right before your app.listen(), add this:
