@@ -1,60 +1,108 @@
-const User = require("../models/user")
-const jwt = require("jsonwebtoken")
-const expressJwt = require("express-jwt")
+const User = require("../models/user");
+const jwt = require("jsonwebtoken");
+const expressJwt = require("express-jwt");
+
+
+// router.post('/signup',(req,res)=>{
+//   const {name,email,password} = req.body 
+//   if(!email || !password || !name){
+//      return res.status(422).json({error:"please add all the fields"})
+//   }
+//   User.findOne({email:email})
+//   .then((savedUser)=>{
+//       if(savedUser){
+//         return res.status(422).json({error:"user already exists with that email"})
+//       }
+//       bcrypt.hash(password,12)
+//       .then(hashedpassword=>{
+//             const user = new User({
+//                 email,
+//                 password:hashedpassword,
+//                 name,
+//                 pic
+//             })
+    
+//             user.save()
+//             .then(user=>{
+//                 // transporter.sendMail({
+//                 //     to:user.email,
+//                 //     from:"no-reply@insta.com",
+//                 //     subject:"signup success",
+//                 //     html:"<h1>welcome to instagram</h1>"
+//                 // })
+//                 res.json({message:"saved successfully"})
+//             })
+//             .catch(err=>{
+//                 console.log(err)
+//             })
+//       })
+     
+//   })
+//   .catch(err=>{
+//     console.log(err)
+//   })
+// })
 
 exports.signup = (req, res) => {
-    console.log("req body", req.body)
-    const user = new User(req.body)
-    user.save((err, user) => {
-        if (err) {
-            return res.status(400).json({ err })
-        }
-        res.json({ user })
-    })
-}
+  const {email, password,name} = req.body
+  User.findOne({email}, (error, savedUser) => {
+    if (!error == undefined || savedUser) {
+      console.log('error ',error, ' saved user', savedUser);
+      return res.status(422).json({error: "Used already exists. Please sign in"});
+    }
+    console.log("req body", req.body);
+    const user = new User(req.body);
+    user.save((error, user) => {
+      if (error) {
+        return res.status(400).json({ error });
+      }
+      res.json({ user });
+    });
+  });
+};
 
 exports.signin = (req, res) => {
-    // find the user based on email
-    const { email, password } = req.body
-    User.findOne({ email }, (err, user) => {
-        if (err || !user) {
-            return res.status(400).json({
-                error: "User with that email does not exist. Please signup",
-            })
-        }
-        // if user is found make sure the email and password match
-        // create authenticate method in user model
-        if (!user.authenticate(password)) {
-            return res.status(401).json({
-                error: "Email and password do not match",
-            })
-        }
-        // generate a signed token with user id and secret
-        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET)
-        // persist the token as 't' in cookie with expiry date
-        res.cookie("t", token, { expire: new Date() + 9999 })
-        // return response with user and token to frontend client
-        const { _id, email, name, phone } = user
-        return res.json({ token, user: { _id, email, name, phone } })
-    })
-}
+  // find the user based on email
+  const { email, password } = req.body;
+  User.findOne({ email }, (err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "User with that email does not exist. Please signup",
+      });
+    }
+    // if user is found make sure the email and password match
+    // create authenticate method in user model
+    if (!user.authenticate(password)) {
+      return res.status(401).json({
+        error: "Email and password do not match",
+      });
+    }
+    // generate a signed token with user id and secret
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+    // persist the token as 't' in cookie with expiry date
+    res.cookie("t", token, { expire: new Date() + 9999 });
+    // return response with user and token to frontend client
+    const { _id, email, name, phone } = user;
+    return res.json({ token, user: { _id, email, name, phone } });
+  });
+};
 
 exports.signout = (req, res) => {
-    res.clearCookie("t")
-    res.json({ message: "Sign out Success" })
-}
+  res.clearCookie("t");
+  res.json({ message: "Sign out Success" });
+};
 
 exports.isAuth = (req, res, next) => {
-    // console.log("auth:",req.auth,"profile",req.profile);
-    let user = req.profile && req.auth && req.profile._id == req.auth._id
-    if (!user) {
-        return res.status(403).json({ error: "Access denied" })
-    }
-    next()
-}
+  // console.log("auth:",req.auth,"profile",req.profile);
+  let user = req.profile && req.auth && req.profile._id == req.auth._id;
+  if (!user) {
+    return res.status(403).json({ error: "Access denied" });
+  }
+  next();
+};
 
 exports.requireSignin = expressJwt({
-    secret: process.env.JWT_SECRET,
-    userProperty: "auth",
-    algorithms: ["HS256"],
-})
+  secret: process.env.JWT_SECRET,
+  userProperty: "auth",
+  algorithms: ["HS256"],
+});
