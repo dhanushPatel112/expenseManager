@@ -2,47 +2,6 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const expressJwt = require("express-jwt");
 
-
-// router.post('/signup',(req,res)=>{
-//   const {name,email,password} = req.body 
-//   if(!email || !password || !name){
-//      return res.status(422).json({error:"please add all the fields"})
-//   }
-//   User.findOne({email:email})
-//   .then((savedUser)=>{
-//       if(savedUser){
-//         return res.status(422).json({error:"user already exists with that email"})
-//       }
-//       bcrypt.hash(password,12)
-//       .then(hashedpassword=>{
-//             const user = new User({
-//                 email,
-//                 password:hashedpassword,
-//                 name,
-//                 pic
-//             })
-    
-//             user.save()
-//             .then(user=>{
-//                 // transporter.sendMail({
-//                 //     to:user.email,
-//                 //     from:"no-reply@insta.com",
-//                 //     subject:"signup success",
-//                 //     html:"<h1>welcome to instagram</h1>"
-//                 // })
-//                 res.json({message:"saved successfully"})
-//             })
-//             .catch(err=>{
-//                 console.log(err)
-//             })
-//       })
-     
-//   })
-//   .catch(err=>{
-//     console.log(err)
-//   })
-// })
-
 exports.signup = (req, res) => {
   const {email, password,name} = req.body
   User.findOne({email}, (error, savedUser) => {
