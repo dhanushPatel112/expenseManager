@@ -81,7 +81,10 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "postbuild": "gzip build/static/js/*.js && gzip build/static/css/*.css",
+    "eject": "react-scripts eject"
+
   },
   "eslintConfig": {
     "extends": [
