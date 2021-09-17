@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./Layout";
-import { API } from "../config";
+import { API } from "../config.js";
 import { authenticate, isAuthenticated } from "../auth";
 
 const Home = () => {
