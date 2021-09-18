@@ -1,5 +1,4 @@
 import { API } from "../config"
-import queryString from "query-string"
 
 export const readCategory = (categoryId,userId) => {
     return fetch(`${API}/category/${categoryId}/${userId}`, {
