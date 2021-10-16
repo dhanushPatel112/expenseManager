@@ -18,6 +18,7 @@ const Home = () => {
           Accept: "application/json",
           Authorization: `Bearer ${token}`
         }
+
       });
       const data = await res.json();
       setExpense(
@@ -26,6 +27,7 @@ const Home = () => {
         })
       );
       total_expense = expense.map(item => item.amount).reduce((prev, curr) => prev + curr, 0)
+
     } catch (err) {
       setError(err);
     }
@@ -40,6 +42,7 @@ const Home = () => {
             Accept: "application/json",
             Authorization: `Bearer ${token}`
           }
+
         });
         const all_cat = await cat_res.json();
         const id_cat = all_cat.map((cat) => cat._id);
@@ -49,7 +52,6 @@ const Home = () => {
         setError(err);
       }
     };
-    
     listExpense(_id, token);
   }, []);
 
@@ -66,6 +68,7 @@ const Home = () => {
         </div>
         {/* <div className="card-footer text-muted">Total Expense: {total_expense}</div>
         <div className="card-footer text-muted">Total Income: {total_income}</div> */}
+
       </div>
     </Layout>
   );

@@ -1,3 +1,4 @@
+const compression = require('compression');
 const express = require("express")
 const mongoose = require("mongoose")
 const morgan = require("morgan")
@@ -16,6 +17,9 @@ const incomeRoutes = require("./routes/income")
 
 // app
 const app = express()
+
+// compression middleware from compression library
+app.use(compression());
 
 mongoose
     .connect(process.env.MONGO_URI, {
