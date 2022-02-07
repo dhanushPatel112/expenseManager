@@ -29,7 +29,7 @@
   }
   
   form {
-    padding: 40px 30px;
+    padding: auto 30px;
     margin: auto auto;
     background: #fefefe;
     display: flex;
@@ -72,14 +72,14 @@
   }
   
   button {
-    -webkit-appearance: none;
+    /* -webkit-appearance: none; */
     width: auto;
-    min-width: 100px;
+    min-width: 80px;
     border-radius: 24px;
     text-align: center;
     padding: 15px 40px;
     margin-top: 5px;
-    background-color: #b08bf8;
+    background-color: #727cf5;
     color: #fff;
     font-size: 14px;
     margin-left: auto;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./Layout";
 import { API } from "../config.js";
-import { authenticate, isAuthenticated } from "../auth";
+import { isAuthenticated } from "../auth";
 
 const Home = () => {
   const [expense, setExpense] = useState([]);

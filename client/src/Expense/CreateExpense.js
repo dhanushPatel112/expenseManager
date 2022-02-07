@@ -287,13 +287,13 @@ const CreateExpense = (props) => {
         )
     }
 
-    const showinfo = () => {
+    const showInfo = () => {
         return <div>cat_id:{cat_id}</div>
     }
 
     return (
         <Layout>
-            {/* {showinfo()} */}
+            {showInfo()}
             {showError()}
             {showSuccess()}
             {categoryForm()}

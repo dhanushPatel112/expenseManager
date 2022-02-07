@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import Layout from "../core/Layout";
 import { signin, authenticate, isAuthenticated } from "../auth";
 import "./style.css";
@@ -48,10 +48,8 @@ const Signin = () => {
   const signUpForm = () => (
     <div id="body_html">
       <div className="session">
-        <div className="left">
-        
-        </div>
-        <form action="" className="log-in" autocomplete="off">
+        <div className="left"></div>
+        <form action="" className="log-in" autoComplete="off">
           <h4>
             Welcome <span>Back</span>
           </h4>
@@ -62,11 +60,11 @@ const Signin = () => {
               type="email"
               name="email"
               id="email"
-              autocomplete="off"
+              autoComplete="off"
               onChange={handelChange("email")}
               value={email}
             />
-            <label for="email">Email:</label>
+            <label htmlFor="email">Email:</label>
             <div className="icon"></div>
           </div>
           <div className="floating-label">
@@ -75,97 +73,101 @@ const Signin = () => {
               type="password"
               name="password"
               id="password"
-              autocomplete="on"
+              autoComplete="on"
               onChange={handelChange("password")}
               value={password}
             />
-            <label for="password">Password:</label>
+            <label htmlFor="password">Password:</label>
             <div className="icon"></div>
           </div>
           <button type="submit" onClick={clickSubmit}>
             Log in
           </button>
+          <br />
+          <Link style={{ color: "blue" }} to="/signup">
+            Already a user? Sign up
+          </Link>
         </form>
       </div>
     </div>
   );
 
-//   const signUpFormOld = () => (
-//     <div className="main-wrapper">
-//       <div style={{ height: "20em" }} className="page-wrapper full-page">
-//         <div className="page-content d-flex align-items-center justify-content-center">
-//           <div className="row w-100 mx-8 auth-page">
-//             <div className="col-md-8 col-xl-6 mx-auto">
-//               <div className="card">
-//                 <div className="row">
-//                   <div className="col-md-8 pl-md-0">
-//                     <div className="auth-form-wrapper px-4 py-5">
-//                       <Link to="/" className="noble-ui-logo d-block mb-2">
-//                         Expense<span>Manager</span>
-//                       </Link>
-//                       <h5 className="text-muted font-weight-normal mb-4">
-//                         Welcome back! Log in to your account.
-//                       </h5>
-//                       <form className="forms-sample">
-//                         <div className="form-group">
-//                           <label htmlFor="exampleInputEmail1">
-//                             Email address
-//                           </label>
-//                           <input
-//                             type="email"
-//                             onChange={handelChange("email")}
-//                             value={email}
-//                             className="form-control"
-//                             id="exampleInputEmail1"
-//                             placeholder="Email"
-//                           />
-//                         </div>
-//                         <div className="form-group">
-//                           <label htmlFor="exampleInputPassword1">
-//                             Password
-//                           </label>
-//                           <input
-//                             type="password"
-//                             className="form-control"
-//                             onChange={handelChange("password")}
-//                             value={password}
-//                             id="exampleInputPassword1"
-//                             autoComplete="current-password"
-//                             placeholder="Password"
-//                           />
-//                         </div>
-//                         <div className="form-check form-check-flat form-check-primary">
-//                           <label className="form-check-label">
-//                             <input
-//                               type="checkbox"
-//                               className="form-check-input"
-//                             />
-//                             Remember me
-//                           </label>
-//                         </div>
-//                         <div className="mt-3">
-//                           <button
-//                             type="submit"
-//                             className="btn btn-primary mr-2 mb-2 mb-md-0"
-//                             onClick={clickSubmit}
-//                           >
-//                             Login
-//                           </button>
-//                         </div>
-//                         <Link to="/signup" className="d-block mt-3 text-muted">
-//                           Not a user? Sign up
-//                         </Link>
-//                       </form>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
+  //   const signUpFormOld = () => (
+  //     <div className="main-wrapper">
+  //       <div style={{ height: "20em" }} className="page-wrapper full-page">
+  //         <div className="page-content d-flex align-items-center justify-content-center">
+  //           <div className="row w-100 mx-8 auth-page">
+  //             <div className="col-md-8 col-xl-6 mx-auto">
+  //               <div className="card">
+  //                 <div className="row">
+  //                   <div className="col-md-8 pl-md-0">
+  //                     <div className="auth-form-wrapper px-4 py-5">
+  //                       <Link to="/" className="noble-ui-logo d-block mb-2">
+  //                         Expense<span>Manager</span>
+  //                       </Link>
+  //                       <h5 className="text-muted font-weight-normal mb-4">
+  //                         Welcome back! Log in to your account.
+  //                       </h5>
+  //                       <form className="forms-sample">
+  //                         <div className="form-group">
+  //                           <label htmlFor="exampleInputEmail1">
+  //                             Email address
+  //                           </label>
+  //                           <input
+  //                             type="email"
+  //                             onChange={handelChange("email")}
+  //                             value={email}
+  //                             className="form-control"
+  //                             id="exampleInputEmail1"
+  //                             placeholder="Email"
+  //                           />
+  //                         </div>
+  //                         <div className="form-group">
+  //                           <label htmlFor="exampleInputPassword1">
+  //                             Password
+  //                           </label>
+  //                           <input
+  //                             type="password"
+  //                             className="form-control"
+  //                             onChange={handelChange("password")}
+  //                             value={password}
+  //                             id="exampleInputPassword1"
+  //                             autoComplete="current-password"
+  //                             placeholder="Password"
+  //                           />
+  //                         </div>
+  //                         <div className="form-check form-check-flat form-check-primary">
+  //                           <label className="form-check-label">
+  //                             <input
+  //                               type="checkbox"
+  //                               className="form-check-input"
+  //                             />
+  //                             Remember me
+  //                           </label>
+  //                         </div>
+  //                         <div className="mt-3">
+  //                           <button
+  //                             type="submit"
+  //                             className="btn btn-primary mr-2 mb-2 mb-md-0"
+  //                             onClick={clickSubmit}
+  //                           >
+  //                             Login
+  //                           </button>
+  //                         </div>
+  //                         <Link to="/signup" className="d-block mt-3 text-muted">
+  //                           Not a user? Sign up
+  //                         </Link>
+  //                       </form>
+  //                     </div>
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
 
   const showError = () => (
     <div

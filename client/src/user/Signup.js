@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Layout from "../core/Layout";
 import { Link } from "react-router-dom";
 import { signup } from "../auth";
+import "./style.css";
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -39,7 +40,7 @@ const Signup = () => {
             });
           }
         } catch {
-            setValues({ ...values, error: data, success: false });
+          setValues({ ...values, error: data, success: false });
         }
       })
       .catch((err) => {
@@ -47,7 +48,83 @@ const Signup = () => {
       });
   };
 
-  const signUpForm = () => {
+  const signUpForm = () => (
+    <div id="body_html">
+      <div className="session">
+        <div className="left"></div>
+        <form action="" className="log-in" autoComplete="off">
+          <p>Welcome to </p>
+          <h4>
+            Expense <span>Manager</span>
+          </h4>
+          <div className="floating-label">
+            <input
+              placeholder="Email"
+              type="email"
+              name="email"
+              id="email"
+              autoComplete="off"
+              onChange={handleChange("email")}
+              required
+              value={email}
+            />
+            <label htmlFor="email">Email:</label>
+            <div className="icon"></div>
+          </div>
+          <div className="floating-label">
+            <input
+              placeholder="Name"
+              type="text"
+              name="name"
+              id="name"
+              autoComplete="off"
+              onChange={handleChange("name")}
+              value={name}
+            />
+            <label htmlFor="name">Name:</label>
+            <div className="icon"></div>
+          </div>
+
+          <div className="floating-label">
+            <input
+              onChange={handleChange("phone")}
+              type="tel"
+              id="exampleInputPhone"
+              placeholder="9786543210"
+              value={phone}
+              required
+              pattern="[0-9]{10}"
+            />
+            <label htmlFor="name">Phone number:</label>
+            <div className="icon"></div>
+          </div>
+
+          <div className="floating-label">
+            <input
+              placeholder="Password"
+              type="password"
+              name="password"
+              id="password"
+              autoComplete="on"
+              onChange={handleChange("password")}
+              value={password}
+            />
+            <label htmlFor="password">Password:</label>
+            <div className="icon"></div>
+          </div>
+          <button type="submit" onClick={clickSubmit}>
+            Log in
+          </button>
+          <br />
+          <Link style={{ color: "blue" }} to="/signin">
+            Already a user? Sign in
+          </Link>
+        </form>
+      </div>
+    </div>
+  );
+
+  const signUpFormOld = () => {
     return (
       <div className="main-wrapper">
         <div className="page-wrapper full-page">

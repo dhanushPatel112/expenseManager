@@ -218,36 +218,36 @@ const newMenu = ({ history }) => {
   );
 };
 
-const Menu = ({ history }) => {
-  return (
-    <div className="navbar navbar-dark bg-dark">
-      <ul className="nav nav-tabs bg-primary">
-        <li className="nav-items">
-          <Link className="nav-link" style={isActive(history, "/")} to="/">
-            Home
-          </Link>
-        </li>
-        <li className="nav-items">
-          <Link
-            className="nav-link"
-            style={isActive(history, "/signin")}
-            to="/signin"
-          >
-            Signin{" "}
-          </Link>
-        </li>
-        <li className="nav-items">
-          <Link
-            className="nav-link"
-            style={isActive(history, "/signup")}
-            to="/signup"
-          >
-            Signup
-          </Link>
-        </li>
-      </ul>
-    </div>
-  );
-};
+// const Menu = ({ history }) => {
+//   return (
+//     <div className="navbar navbar-dark bg-dark">
+//       <ul className="nav nav-tabs bg-primary">
+//         <li className="nav-items">
+//           <Link className="nav-link" style={isActive(history, "/")} to="/">
+//             Home
+//           </Link>
+//         </li>
+//         <li className="nav-items">
+//           <Link
+//             className="nav-link"
+//             style={isActive(history, "/signin")}
+//             to="/signin"
+//           >
+//             Signin{" "}
+//           </Link>
+//         </li>
+//         <li className="nav-items">
+//           <Link
+//             className="nav-link"
+//             style={isActive(history, "/signup")}
+//             to="/signup"
+//           >
+//             Signup
+//           </Link>
+//         </li>
+//       </ul>
+//     </div>
+//   );
+// };
 
 export default withRouter(newMenu);
