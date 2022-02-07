@@ -53,16 +53,16 @@ app.use("/api", incomeRoutes)
 const PORT = process.env.PORT || 8000
 
 if (process.env.NODE_ENV === "production") {
-    // const root = require('path').join(__dirname, 'client', 'build')
-    // app.use(express.static(root));
-    app.use(express.static(__dirname));
-    app.use(express.static(path.join(__dirname, 'build')));
+    const root = require('path').join(__dirname, 'client', 'build')
+    app.use(express.static(root));
+    // app.use(express.static(__dirname));
+    // app.use(express.static(path.join(__dirname, 'build')));
 }
 
 
 // Right before your app.listen(), add this:
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname,'client', 'build', 'index.html'));
 })
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`)
